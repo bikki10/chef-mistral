@@ -1,5 +1,5 @@
 ...
-This is a react app that recommends food recipes based on ingredients provided.
+This is a react (vite) app that recommends food recipes based on ingredients provided.
 While doing this project I learned about integrating AI to the web apps. 
 I've used HuggingFace's API where the Mistral Model was used for generating the recipe responses. 
 ...
