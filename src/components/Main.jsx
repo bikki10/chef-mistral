@@ -5,7 +5,7 @@ import { getRecipeFromMistral } from "../ai";
 
 const Main = () => {
   const [showRecipe, setShowRecipe] = useState("");
-  const [ingredients, setIngredients] = useState(["Chicken"]);
+  const [ingredients, setIngredients] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
   const handleFormSubmit = (event) => {
