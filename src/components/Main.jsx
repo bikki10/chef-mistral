@@ -6,6 +6,7 @@ import { getRecipeFromMistral } from "../ai";
 const Main = () => {
   const [showRecipe, setShowRecipe] = useState("");
   const [ingredients, setIngredients] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
@@ -18,8 +19,10 @@ const Main = () => {
   };
 
   const handleRecipeButton = async () => {
+    setIsLoading(true);
     const recipeGenerated = await getRecipeFromMistral(ingredients);
     setShowRecipe(recipeGenerated);
+    setIsLoading(false);
   };
 
   return (
@@ -46,7 +49,13 @@ const Main = () => {
           ingredients={ingredients}
         />
       )}
-      {showRecipe && <Recipe  recipe={showRecipe} />}
+      {isLoading ? (
+        <p className="md:mx-[250px] sm:mx-[100px] mx-[50px] my-10 animate-bounce text-center font-bold md:text-xl sm:text-lg text-base">
+          Generating Recipe
+        </p>
+      ) : (
+        showRecipe && <Recipe recipe={showRecipe} />
+      )}
     </main>
   );
 };
