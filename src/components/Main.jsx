@@ -43,13 +43,12 @@ const Main = () => {
           <p className="md:hidden ">Enter</p>
         </button>
       </form>
-      {ingredients.length !== 0 && (
-        <IngredientsList
-          handleRecipeButton={handleRecipeButton}
-          ingredients={ingredients}
-          setIngredients={setIngredients}
-        />
-      )}
+      <IngredientsList
+        handleRecipeButton={handleRecipeButton}
+        ingredients={ingredients}
+        setIngredients={setIngredients}
+      />
+      )
       {isLoading ? (
         <div className="md:mx-[240px] sm:mx-[100px] mx-[50px] my-10 font-semibold flex sm:flex-row flex-col justify-center items-center gap-2 ">
           <p className="text-amber-700 lg:text-xl md:text-lg sm:text-base text-sm">

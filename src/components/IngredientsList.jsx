@@ -27,9 +27,11 @@ const IngredientsList = ({
   return (
     <section>
       <div className="lg:mx-[250px] md:mx-[100px] sm:mx-[52px] mx-[16px] flex flex-col gap-4">
-        <h1 className="text-lg sm:text-xl md:text-3xl font-semibold">
-          Ingredients on hand:
-        </h1>
+        {ingredients.length !== 0 && (
+          <h1 className="text-lg sm:text-xl md:text-3xl font-semibold">
+            Ingredients on hand:
+          </h1>
+        )}
         <ul className="ml-4 text-[#475467] md:text-lg sm:text-base text-sm sm:space-y-2 space-y-1 flex flex-col justify-center">
           {ingredientsListItems}
         </ul>
