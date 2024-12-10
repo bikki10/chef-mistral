@@ -5,12 +5,7 @@ import { getRecipeFromMistral } from "../ai";
 
 const Main = () => {
   const [showRecipe, setShowRecipe] = useState("");
-  const [ingredients, setIngredients] = useState([
-    "Chicken",
-    "Pepperoni",
-    "Cheese",
-    "Pizza Sauce",
-  ]);
+  const [ingredients, setIngredients] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
   const recipeSection = useRef(null);
@@ -34,7 +29,7 @@ const Main = () => {
 
   useEffect(() => {
     if ((showRecipe !== "") & (recipeSection !== null)) {
-      recipeSection.current.scrollIntoView({behavior:"smooth"});
+      recipeSection.current.scrollIntoView({ behavior: "smooth" });
       // const yCoord =
       //   recipeSection.current.getBoundingClientRect().top + window.scrollY;
       // window.scroll({
