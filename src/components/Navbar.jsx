@@ -7,9 +7,9 @@ const Navbar = () => {
         <img
           src={logo}
           alt="logo"
-          className="md:w-[2.5rem] sm:w-[2.25rem] w-[2rem]  h-auto"
+          className="md:w-[2.5rem] sm:w-[2.25rem] w-[2rem] h-auto "
         />
-        <h1 className="md:text-[2rem] sm:text-[1.75rem] text-[1.5rem] font-inter font-normal">
+        <h1 className="md:text-[2rem] sm:text-[1.75rem] text-[1.5rem] font-inter font-medium">
           Chef Mistral
         </h1>
       </div>

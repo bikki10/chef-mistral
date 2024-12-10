@@ -1,10 +1,12 @@
 /* eslint-disable react/prop-types */
-import { BsXCircleFill } from "react-icons/bs";
+import { RxCross2 } from "react-icons/rx";
+
 
 const IngredientsList = ({
   ingredients,
   setIngredients,
   handleRecipeButton,
+  refs,
 }) => {
   const handleRemoveButton = (itemToRemove) => {
     setIngredients((prevIngredients) =>
@@ -13,13 +15,16 @@ const IngredientsList = ({
   };
 
   const ingredientsListItems = ingredients.map((item) => (
-    <li className="flex justify-between shadow p-4 rounded" key={item}>
+    <li
+      className="flex justify-between shadow p-4 rounded md:ml-[5px] md:mr-[20px]"
+      key={item}
+    >
       {item}{" "}
       <button
         onClick={() => handleRemoveButton(item)}
-        className="py-1 px-2 text-red-500 rounded "
+        className="py-1 px-2 text-gray-600 hover:text-red-500 rounded md:text-xl"
       >
-        <BsXCircleFill />
+        <RxCross2 />
       </button>
     </li>
   ));
@@ -32,12 +37,15 @@ const IngredientsList = ({
             Ingredients on hand:
           </h1>
         )}
-        <ul className="ml-4 text-[#475467] md:text-lg sm:text-base text-sm sm:space-y-2 space-y-1 flex flex-col justify-center">
+        <ul className="md:ml-4 ml-[5px] text-[#475467] md:text-lg sm:text-base text-sm sm:space-y-2 space-y-1 flex flex-col justify-center">
           {ingredientsListItems}
         </ul>
       </div>
       {
-        <div className="bg-[#F0EFEB] transition duration-150 delay-100 ease-in-out gap-4 flex flex-col justify-center md:gap-1 md:items-center my-4 sm:my-6 md:my-8 md:px-8 md:py-8 px-4 py-4 sm:py-6 lg:mx-[270px] md:mx-[100px] sm:mx-[60px] mx-[20px] rounded-lg">
+        <div
+          ref={refs}
+          className="bg-[#F0EFEB] transition duration-150 delay-100 ease-in-out gap-4 flex flex-col justify-center md:gap-1 md:items-center my-4 sm:my-6 md:my-8 md:px-8 md:py-8 px-4 py-4 sm:py-6 lg:mx-[270px] md:mx-[100px] sm:mx-[60px] mx-[20px] rounded-lg"
+        >
           <p className="md:text-lg text-base font-medium">
             Ready for a recipe?
           </p>
@@ -51,7 +59,9 @@ const IngredientsList = ({
               disabled={ingredients.length < 3 ? true : false}
               onClick={handleRecipeButton}
               className={`py-2 px-4 text-white md:text-base text-sm ${
-                ingredients.length >= 3 ? "bg-[#D17557]" : "bg-neutral-300"
+                ingredients.length >= 3
+                  ? "bg-amber-600 hover:drop-shadow-2xl hover:shadow-gray-600 hover:scale-95 delay-75 transition ease-out duration-150"
+                  : "bg-neutral-300"
               } rounded-md`}
             >
               Get a recipe

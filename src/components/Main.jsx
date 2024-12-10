@@ -1,12 +1,19 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Recipe from "./Recipe";
 import IngredientsList from "./IngredientsList";
 import { getRecipeFromMistral } from "../ai";
 
 const Main = () => {
   const [showRecipe, setShowRecipe] = useState("");
-  const [ingredients, setIngredients] = useState([]);
+  const [ingredients, setIngredients] = useState([
+    "Chicken",
+    "Pepperoni",
+    "Cheese",
+    "Pizza Sauce",
+  ]);
   const [isLoading, setIsLoading] = useState(false);
+
+  const recipeSection = useRef(null);
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
@@ -25,6 +32,18 @@ const Main = () => {
     setIsLoading(false);
   };
 
+  useEffect(() => {
+    if ((showRecipe !== "") & (recipeSection !== null)) {
+      recipeSection.current.scrollIntoView({behavior:"smooth"});
+      // const yCoord =
+      //   recipeSection.current.getBoundingClientRect().top + window.scrollY;
+      // window.scroll({
+      //   top: yCoord,
+      //   behavior: "smooth",
+      // });
+    }
+  }, [showRecipe]);
+
   return (
     <main className="main-section font-inter">
       <form
@@ -37,18 +56,19 @@ const Main = () => {
           type="text"
           aria-label="Add ingredient"
           name="ingredient"
+          autoFocus
         />
-        <button className="lg:w-1/6 md:w-1/4 sm:w-1/6 w-1/4 font-inter font-medium bg-black text-white hover:drop-shadow-2xl hover:shadow-gray-600 hover:scale-95 delay-75 transition ease-out duration-150 md:text-base sm:text-sm text-xs md:p-4 sm:p-3 p-2 rounded-lg ">
+        <button className="lg:w-1/6 md:w-1/4 sm:w-1/6 w-1/4 font-inter font-medium bg-amber-600 text-white hover:drop-shadow-2xl hover:shadow-gray-600 hover:scale-95 delay-75 transition ease-out duration-150 md:text-base sm:text-sm text-xs md:p-4 sm:p-3 p-2 rounded-lg ">
           <p className="md:block hidden">+ Add ingredient</p>
           <p className="md:hidden ">Enter</p>
         </button>
       </form>
       <IngredientsList
+        refs={recipeSection}
         handleRecipeButton={handleRecipeButton}
         ingredients={ingredients}
         setIngredients={setIngredients}
       />
-      )
       {isLoading ? (
         <div className="md:mx-[240px] sm:mx-[100px] mx-[50px] my-10 font-semibold flex sm:flex-row flex-col justify-center items-center gap-2 ">
           <p className="text-amber-700 lg:text-xl md:text-lg sm:text-base text-sm">
